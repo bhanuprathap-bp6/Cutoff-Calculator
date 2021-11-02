@@ -1,0 +1,448 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Cut-off Calculator </title>
+
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	background: radial-gradient(blueviolet,#2c2f69);
+	color: antiquewhite;
+	box-sizing: border-box;
+	outline: none;
+	list-style: none;
+	text-decoration: none;
+}
+
+
+.bdy{
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.group_selection{
+	margin: 0%;
+	padding: 0%;
+	justify-self: center;
+}
+
+.radio {
+	
+		
+		color: var(--color);
+		
+
+		display: flex;
+		grid-template-columns: min-content auto;
+		grid-gap: 0.5em;
+}
+#group{
+	padding: 5px 60px;
+}
+
+input{
+	padding: 5px 0px 5px 27px;
+	width:100%;}
+
+#button{
+border-radius:3px;
+padding:6px 116px;
+background:lawngreen;
+color:blue;
+border:none;
+outline:none;
+margin: auto;
+}
+#button:hover{
+cursor:pointer;
+}
+
+#cutoffbutton{
+	padding: 11px 0;
+    border-radius: 10px;
+background:lawngreen;
+color:blue;
+border:none;
+outline:none;
+margin: auto;
+}
+#cutoffbutton:hover{
+cursor:pointer;
+}
+    
+
+.internal_mark{
+	padding: 0px 20px;
+	text-align: center;
+	font-style: normal;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.cutoff_class .input{
+	padding: 5px 0px 5px 27px;
+	width:100%;
+}
+
+.foot {
+	margin:-115px 20px;
+	padding: 0%;
+}
+
+a{
+	font-weight: 100;
+	font-family:cursive;
+	color: chartreuse;
+}
+
+</style>
+
+
+</head>
+<body>
+
+	<div class="bdy">
+		
+		<form id="myform" >
+			
+		
+			<center>
+		<div class="group_selection" style="display:block;" id="field">
+			
+			<h1 style="display: block;" id="h1">CUT-OFF CALCULATOR</h1><br>
+			<select  class="group" id="group" onchange="chosegroup()">
+				<option value="0">--Select Your Group--</option >
+				<option value="1">Engineering (TNEA)</option>
+				<option value="2">Agri (TNAU)</option>
+				<option value="3">Veterinary</option>
+				<option value="4">BNYS</option>
+				<option value="5">Paramedical (degree course)</option>
+				<option value="6">Paramedical (diplomo course)</option>
+				<option value="s">Special Page😎(Doubts)</option>
+				</select>
+		</div><br><br></center>
+
+	
+		<div id="engndiv" style="display:none;">
+			<center><h2>ENGINEERING CUT-OFF</h2></center>
+			<label>MATHS</label><input type="number" id="Em12" name="" max="100" value="" required onkeyup="engn_calcu()"><br>
+			<label>PHYSICS</label><input type="number" id="Ep12" name="" max="100" value="" required onkeyup="engn_calcu()"><br>
+			<label>CHEMISTRY</label><input type="number" id="Ec12" name="" max="100" value="" required onkeyup="engn_calcu()"><br><br><br>
+
+			<label>Engineering Cutt-off</label><input type="number" id="engn" name="" max="100" value="" required><br>
+		</div>
+
+		<div id="agridiv" style="display:none;">
+			<center><h3>AGRI CUT-OFF</h3></center>
+			
+			<div class="radio"><t>Bio-Maths</t><input type="radio" name="agri_grp" id="biomaths" onchange="agrifunction()"><br>
+				<t>Pure Science</t><input type="radio" name="agri_grp" id="ps" onchange="agrifunction()"></div><br>
+			
+
+			<div id="bioagridiv" style="display:none;">
+				<label>MATHS</label><input type="number" id="A1m12" name="" max="100" value="" required onkeyup="agri_calcu()"><br>
+				<label>PHYSICS</label><input type="number" id="A1p12" name="" max="100" value="" required onkeyup="agri_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="A1c12" name="" max="100" value="" required onkeyup="agri_calcu()"><br>
+				<label>BIOLOGY</label><input type="number" id="A1b12" name="" max="100" value="" required onkeyup="agri_calcu()"><br>
+			</div>
+			<div id="psagridiv" style="display:none;">
+				<label>PHYSICS</label><input type="number" id="A2p12" name="" max="100" value="" required onkeyup="agri_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="A2c12" name="" max="100" value="" required onkeyup="agri_calcu()"> <br>
+				<label>BOTANY</label><input type="number" id="A2bot12" name="" max="100" value="" required onkeyup="agri_calcu()"><br>
+				<label>ZOOLOGY</label><input type="number" id="A2zoo12" name="" max="100" value="" required onkeyup="agri_calcu()"><br>
+			</div><br>
+
+			<label>Agri</label><br><input type="number" id="agri" value=""><br>
+			
+		</div>
+
+		<div id="vetdiv" style="display:none;">
+			<center><h3 id="veth3" style="display: none;">VETERINARY CUT-OFF</h3></center>
+			<center><h3 id="bnysh3" style="display: none;">BNYS CUT-OFF</h3></center>
+			<label>PHYSICS</label><input type="number" id="Vp12" name="" max="100" value="" required onkeyup="vet_calcu()"><br>
+			<label>CHEMISTRY</label><input type="number" id="Vc12" name="" max="100" value="" required onkeyup="vet_calcu()"><br>
+			<label>BIOLOGY</label><input type="number" id="Vb12" name="" max="100" value="" required onkeyup="vet_calcu()"><br><br>
+
+			<label id="vetlabel" style="display: none;">Veterinary</label><label id="bnyslabel" style="display: none;">BNYS</label>
+			<input type="number" id="vet" value=""><br>
+		</div>
+
+		<div id="nursediv" style="display: none;    padding: 0px 15px;">
+			<center><h3>Paramedical (Degree Course) [200]</h3></center>
+
+			<div class="radio">
+				<t>Bio-Maths</t><input type="radio" name="nurse_grp" id="Nbio" onchange="nursefunction()"><br>
+				<t>Pure Science</t><input type="radio" name="nurse_grp" id="Nps" onchange="nursefunction()"><br>
+				<t>Computer Science</t><input type="radio" name="nurse_grp" id="Ncs" onchange="nursefunction()"><br>
+			</div><br>
+
+			<div id="Nbiodiv" style="display:none;">
+				<label>PHYSICS</label><input type="number" id="N1p12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="N1c12" name="" max="100" value="" required onkeyup="nurse_calcu()"> <br>
+				<label>BIOLOGY</label><input type="number" id="N1b12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+			</div>
+
+			<div id="Npsdiv" style="display:none;">
+				<label>PHYSICS</label><input type="number" id="N2p12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="N2c12" name="" max="100" value="" required onkeyup="nurse_calcu()"> <br>
+				<label>BOTANY</label><input type="number" id="N2bot12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+				<label>ZOOLOGY</label><input type="number" id="N2zoo12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+			</div>
+
+			<div id="Ncsdiv" style="display:none;">
+				<label>MATHS</label><input type="number" id="N3m12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+				<label>PHYSICS</label><input type="number" id="N3p12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="N3c12" name="" max="100" value="" required onkeyup="nurse_calcu()"><br>
+			</div><br><br>
+
+			<label>Cut-off</label>
+			<input type="number" id="nurse" value=""><br>
+		</div>
+		
+		<div id="dnursediv" style="display: none;    padding: 0px 15px;">
+			<center><h3>Paramedical (Diplomo Course) [100]</h3></center>
+
+			<div class="radio">
+				<t>Bio-Maths</t><input type="radio" name="nurse_grp" id="dNbio" onchange="dnursefunction()"><br>
+				<t>Pure Science</t><input type="radio" name="nurse_grp" id="dNps" onchange="dnursefunction()"><br>
+				<t>Computer Science</t><input type="radio" name="nurse_grp" id="dNcs" onchange="dnursefunction()"><br>
+			</div><br>
+
+			<div id="dNbiodiv" style="display:none;">
+				<label>PHYSICS</label><input type="number" id="dN1p12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="dN1c12" name="" max="100" value="" required onkeyup="dnurse_calcu()"> <br>
+				<label>BIOLOGY</label><input type="number" id="dN1b12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+			</div>
+
+			<div id="dNpsdiv" style="display:none;">
+				<label>PHYSICS</label><input type="number" id="dN2p12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="dN2c12" name="" max="100" value="" required onkeyup="dnurse_calcu()"> <br>
+				<label>BOTANY</label><input type="number" id="dN2bot12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+				<label>ZOOLOGY</label><input type="number" id="dN2zoo12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+			</div>
+
+			<div id="dNcsdiv" style="display:none;">
+				<label>MATHS</label><input type="number" id="dN3m12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+				<label>PHYSICS</label><input type="number" id="dN3p12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+				<label>CHEMISTRY</label><input type="number" id="dN3c12" name="" max="100" value="" required onkeyup="dnurse_calcu()"><br>
+			</div><br><br>
+
+			<label>Cut-off</label>
+			<input type="number" id="dnurse" value=""><br>
+		</div>
+		
+		<div id="nonediv" style="display: none;">
+			<center><h2>To be updated soon.</h2></center>
+		</div>
+
+		<div id="spl" style="display: none;">
+			<div class="account" style="background-color:slateblue;;border-radius:6%;border-style:outset;padding: 5px 10px;">
+				<center><label>Any Queries or Suggestion. DM me.</label><br>
+				<a href="https://instagram.com/_clanga_hastata_?utm_medium=copy_link" target="blank">bhanuprathap @ bp</a></center>
+			</div><br>
+			<div class="account" style="background-color:slateblue;;border-radius:6%;border-style:outset;padding: 5px 10px;">
+				<center><label>Kindly give your feedback</label><br>
+				<a href="https://instagram.com/_clanga_hastata_?utm_medium=copy_link" target="blank" style="color: orchid;">feedback</a></center>
+			</div>
+		</div>
+			
+	</div>
+	<script>
+	
+		function chosegroup(){
+			document.getElementById("myform").submit();
+			var g = document.getElementById("group");
+			G=g.options[g.selectedIndex].value;
+			
+			document.getElementById("h1").style.display="none";
+			document.getElementById("engndiv").style.display="none";
+			document.getElementById("agridiv").style.display="none";
+			document.getElementById("vetdiv").style.display="none";
+			document.getElementById("nonediv").style.display="none";
+			document.getElementById("spl").style.display="none";
+			document.getElementById("veth3").style.display="none"; document.getElementById("vetlabel").style.display="none";
+			document.getElementById("bnysh3").style.display="none"; document.getElementById("bnyslabel").style.display="none";
+			document.getElementById("nursediv").style.display="none";
+			document.getElementById("dnursediv").style.display="none";
+
+			if (G==1){ document.getElementById("engndiv").style.display="block";}
+			else if (G==2){ document.getElementById("agridiv").style.display="block";}
+			else if (G==3){ document.getElementById("vetdiv").style.display="block";  document.getElementById("veth3").style.display="block"; document.getElementById("vetlabel").style.display="block";}
+			else if (G==4){ document.getElementById("vetdiv").style.display="block"; document.getElementById("bnysh3").style.display="block"; document.getElementById("bnyslabel").style.display="block";}
+			else if (G==5){ document.getElementById("nursediv").style.display="block";}
+			else if (G==6){ document.getElementById("dnursediv").style.display="block";}
+			else if (G=="s"){ document.getElementById("spl").style.display="block";}
+
+			else{ document.getElementById("nonediv").style.display="block";}
+
+		}
+	
+		
+	
+		function engn_calcu(){
+	
+			var m = Number(document.getElementById("Em12").value);
+			var p =  Number(document.getElementById("Ep12").value);
+			var c =  Number(document.getElementById("Ec12").value);
+	
+			var res = ((p+c)/2 + m);
+			document.getElementById("engn").value = res;
+			
+		}
+		function agrifunction(){
+			var bio = document.getElementById("biomaths").checked;
+	
+			document.getElementById("bioagridiv").style.display="none";
+			document.getElementById("psagridiv").style.display="none";
+			if (bio==true){ document.getElementById("bioagridiv").style.display="block";}
+			else {document.getElementById("psagridiv").style.display="block";}
+		}
+		function agri_calcu(){
+			var bio = document.getElementById("biomaths").checked;
+	
+			if (bio==true){
+				var m =  Number(document.getElementById("A1m12").value);
+				var p =  Number(document.getElementById("A1p12").value);
+				var c =  Number(document.getElementById("A1c12").value);
+				var b =  Number(document.getElementById("A1b12").value);
+	
+				var res = (m + p+ c+ b)/2;
+				document.getElementById("agri").value = res;
+			}
+			else{
+				var p =  Number(document.getElementById("A2p12").value);
+				var c =  Number(document.getElementById("A2c12").value);
+				var bot =  Number(document.getElementById("A2bot12").value);
+				var zoo = Number( document.getElementById("A2zoo12").value);
+	
+				var res = (p + c+ bot + zoo)/2;
+				document.getElementById("agri").value = res;
+			}
+		}
+
+		function nursefunction(){
+			var bio = document.getElementById("Nbio").checked;
+			var ps = document.getElementById("Nps").checked;
+			var cs = document.getElementById("Ncs").checked;
+	
+			document.getElementById("Nbiodiv").style.display="none";
+			document.getElementById("Npsdiv").style.display="none";
+			document.getElementById("Ncsdiv").style.display="none";
+
+			if (bio==true){ document.getElementById("Nbiodiv").style.display="block";}
+			else if(ps==true){document.getElementById("Npsdiv").style.display="block";}
+			else if(cs==true){document.getElementById("Ncsdiv").style.display="block";}
+		}
+		function nurse_calcu(){
+			var bio = document.getElementById("Nbio").checked;
+			var ps = document.getElementById("Nps").checked;
+			var cs = document.getElementById("Ncs").checked;
+	
+			if (bio==true){
+				var p =  Number(document.getElementById("N1p12").value);
+				var c =  Number(document.getElementById("N1c12").value);
+				var b =  Number(document.getElementById("N1b12").value);
+	
+				var res = (p + c)/2 + b;
+				document.getElementById("nurse").value = res;
+			}
+			else if(ps==true) {
+				var p =  Number(document.getElementById("N2p12").value);
+				var c =  Number(document.getElementById("N2c12").value);
+				var bot =  Number(document.getElementById("N2bot12").value);
+				var zoo = Number( document.getElementById("N2zoo12").value);
+	
+				var res = (p + c+ bot + zoo)/2;
+				document.getElementById("nurse").value = res;
+			}
+			else if(cs==true) {
+				var p =  Number(document.getElementById("N3p12").value);
+				var c =  Number(document.getElementById("N3c12").value);
+				var m =  Number(document.getElementById("N3m12").value);
+
+				var res = (p + c)/2 + m;
+				document.getElementById("nurse").value = res;
+			}
+		}
+
+
+		function dnursefunction(){
+			var bio = document.getElementById("dNbio").checked;
+			var ps = document.getElementById("dNps").checked;
+			var cs = document.getElementById("dNcs").checked;
+	
+			document.getElementById("dNbiodiv").style.display="none";
+			document.getElementById("dNpsdiv").style.display="none";
+			document.getElementById("dNcsdiv").style.display="none";
+
+			if (bio==true){ document.getElementById("dNbiodiv").style.display="block";}
+			else if(ps==true){document.getElementById("dNpsdiv").style.display="block";}
+			else if(cs==true){document.getElementById("dNcsdiv").style.display="block";}
+		}
+		function dnurse_calcu(){
+			var bio = document.getElementById("dNbio").checked;
+			var ps = document.getElementById("dNps").checked;
+			var cs = document.getElementById("dNcs").checked;
+	
+			if (bio==true){
+				var p =  Number(document.getElementById("dN1p12").value);
+				var c =  Number(document.getElementById("dN1c12").value);
+				var b =  Number(document.getElementById("dN1b12").value);
+	
+				var res = (p + c)/2 + b;
+				document.getElementById("dnurse").value = res/2;
+			}
+			else if(ps==true) {
+				var p =  Number(document.getElementById("dN2p12").value);
+				var c =  Number(document.getElementById("dN2c12").value);
+				var bot =  Number(document.getElementById("dN2bot12").value);
+				var zoo = Number( document.getElementById("dN2zoo12").value);
+	
+				var res = (p + c+ bot + zoo)/2;
+				document.getElementById("dnurse").value = res/2;
+			}
+			else if(cs==true) {
+				var p =  Number(document.getElementById("dN3p12").value);
+				var c =  Number(document.getElementById("dN3c12").value);
+				var m =  Number(document.getElementById("dN3m12").value);
+
+				var res = (p + c)/2 + m;
+				document.getElementById("dnurse").value = res/2;
+			}
+		}
+
+
+		function vet_calcu(){
+	
+			var p = Number(document.getElementById("Vp12").value);
+			var c = Number(document.getElementById("Vc12").value);
+			var b = Number(document.getElementById("Vb12").value);
+	
+			var res = ((p+c)/2 + b);
+			document.getElementById("vet").value = res;
+		}
+
+		</script>
+		
+	</form>
+
+<br>
+<br>
+<div class="foot">
+	<div align="left">
+	<f1>Kindly give your feedback</f1><br>
+	<f1>to my account</f1><br>
+	<f1><a href="https://instagram.com/_clanga_hastata_?utm_medium=copy_link" target="blank">feedback</a></f1>
+</div>
+<div align="right">
+	<f2>Developped by:</f2><br>
+	<f2><a href="https://instagram.com/_clanga_hastata_?utm_medium=copy_link" target="blank">bhanuprathap @ bp</a><br>
+	<a href="https://instagram.com/dhanush.sa?utm_medium=copy_link" target="blank">dhanush</a></f2>
+</div>
+</div>
+</body>
+</html>
